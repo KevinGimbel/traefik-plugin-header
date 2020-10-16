@@ -11,6 +11,7 @@ type Config struct {
 	Headers []Header `json:"headers,omitempty"`
 }
 
+// Header represents a HTTP header config
 type Header struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
@@ -18,10 +19,10 @@ type Header struct {
 
 // CreateConfig creates and initializes the plugin configuration.
 func CreateConfig() *Config {
-	return &Config{}
+	return &Config{Headers: []Header{}}
 }
 
-type defaultHeaders struct {
+type headerHTTPHandler struct {
 	name    string
 	next    http.Handler
 	headers []Header
@@ -29,14 +30,14 @@ type defaultHeaders struct {
 
 // New creates and returns a plugin instance.
 func New(_ context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
-	return &defaultHeaders{
+	return &headerHTTPHandler{
 		name:    name,
 		next:    next,
 		headers: config.Headers,
 	}, nil
 }
 
-func (h *defaultHeaders) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+func (h *headerHTTPHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	for _, h := range h.headers {
 		rw.Header().Add(h.Key, h.Value)
 	}

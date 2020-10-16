@@ -4,6 +4,6 @@ type: middleware
 import: github.com/kevingimbel/traefik-plugin-header
 compatibility: TODO
 testData:
-  Headers:
+  headers:
     - key: "de.kevingimbel/version"
       value: "1.0"
