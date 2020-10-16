@@ -1,0 +1,9 @@
+displayName: KevinGimbel Default Headers
+summary: A test plugin for Traefik
+type: middleware
+import: github.com/kevingimbel/traefik-plugin-header
+compatibility: TODO
+testData:
+  Headers:
+    - key: "de.kevingimbel/version"
+      value: "1.0"
