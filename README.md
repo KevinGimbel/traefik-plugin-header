@@ -10,7 +10,7 @@
 [experimental.plugins]
   [experimental.plugins.kg_header]
     modulename = "github.com/kevingimbel/traefik-plugin-header"
-    version = "v0.1.0"
+    version = "v0.1.1"
 
 # Configure a reusable middleware called "kg_header-default"
 [http.middlewares]
@@ -18,7 +18,7 @@
     # Rewrites all "foo" occurences by "bar"
     [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
       key = "kevingimbel.de/version"
-      value = "0.1.0"
+      value = "0.1.1"
     [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
       key = "kevingimbel.de/works"
       value = "true"
