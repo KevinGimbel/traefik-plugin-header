@@ -16,10 +16,10 @@
 [http.middlewares]
   [http.middlewares.kg_header-default.plugin.kg_header]
     # Rewrites all "foo" occurences by "bar"
-    [[http.middlewares.kg_header-default.plugin.kg_header.headers]
+    [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
       key = "kevingimbel.de/version"
       value = "0.1.0"
-    [[http.middlewares.kg_header-default.plugin.kg_header.headers]
+    [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
       key = "kevingimbel.de/works"
       value = "true"
 ```
