@@ -1,4 +1,4 @@
-package plugin_header
+package traefik_plugin_header
 
 import (
 	"context"

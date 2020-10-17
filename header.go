@@ -1,5 +1,5 @@
 // Package plugin_header a plugin to adds default headers
-package plugin_header
+package traefik_plugin_header
 
 import (
 	"context"
