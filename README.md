@@ -4,24 +4,23 @@
 
 ## Usage
 
-`traefik.toml`
-```toml
-# Define plugin
-[experimental.plugins]
-  [experimental.plugins.kg_header]
-    modulename = "github.com/kevingimbel/traefik-plugin-header"
-    version = "v0.1.2"
+`traefik.yaml`
+```yaml
+pilot:
+    token: "xxxx"
+experimental:
+    plugins:
+        traefik-plugin-header:
+            moduleName: "github.com/kevingimbel/traefik-plugin-header"
+            version: "v0.1.2"
 
-# Configure a reusable middleware called "kg_header-default"
-[http.middlewares]
-  [http.middlewares.kg_header-default.plugin.kg_header]
-    # Rewrites all "foo" occurences by "bar"
-    [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
-      key = "kevingimbel.de/version"
-      value = "0.1.2"
-    [[http.middlewares.kg_header-default.plugin.kg_header.headers]]
-      key = "kevingimbel.de/works"
-      value = "true"
+middlewares:
+    my-traefik-plugin-header:
+        plugin:
+            traefik-plugin-header:
+                Headers:
+                    - key: de.kevingimbel/version
+                      value: "1.0"
 ```
 
 I am not sure if the config above actually works and I also don't know how to test a plugin before publishing it. 😬
@@ -34,7 +33,7 @@ your-container: #
 
   labels:
     # Attach kg_header-default@file middleware (declared in file)
-    - "traefik.http.routers.my-container.middlewares=kg_header-default@file"
+    - "traefik.http.routers.my-container.middlewares=my-traefik-plugin-header@file"
 ```
 
 ## Acknowledgment
